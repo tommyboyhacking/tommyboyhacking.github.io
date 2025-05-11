@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta title="Byte-Sized Bug Bounty Adventures"
+    <meta property="og:title" content="Byte-Sized Bug Bounty Adventures">
+    <meta property="og:description" content="Join me on an adventure through Bug Bounty space and time as we explore a Business logic bug and secondary contex path traversal bug found on Public Bug Bounty Programs">
+    <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit="no">
     <meta description="Join me on an adventure through Bug Bounty space and time as we explore a Business logic bug and secondary contex path traversal bug found on Public Bug Bounty Programs">
-    <meta image="/1.jpg">
+    <meta image="1.jpg">
 </head>
 
 <h1>Byte-Sized Bug Bounty Adventures</h1>
 
-<img src="/1.jpg">
+<img src="1.jpg">
 
 <body>
     <p>
@@ -30,8 +32,8 @@
         Last important note: Both of these bugs were found on public Bug Bounty Programs.
     </p>     
        
-    <h1> 1. Sometimes, the bug is staring right at you. </h1> 
-    <b>Business Logic / Access Control Bug</b>
+    <h2> Sometimes, the bug is staring right at you. </h2> 
+    <h3>Business Logic / Access Control Bug</h3>
     <p>
         I'm including this bug as I often hear from new (or newer than me) hackers that they can't find good resources on Business Logic bugs. The bug itself is simple, this is more so to demonstrate the 'thought process'. 
         
@@ -108,8 +110,8 @@
         The lesson learned here is sometimes, the bug is staring you right in the face, you just have to put 2 and 2 together. 
     </p>
         
-    <h1>  2. Skywalkin' past your WAF into your internal network </h1> 
-    <b>A Secondary Context Path Traversal Bug </b>
+    <h2>  Skywalkin' past your WAF into your internal network </h2> 
+    <h3>A Secondary Context Path Traversal Bug </h3>
         
         (Details such as specific error messages, path names, parameter, and subdomain names, etc have been scrambled so as to not reveal the actual target. The concepts remain the same. )
         
@@ -138,7 +140,9 @@
             <code>
                 https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e
             </code>
-        </pre>  where the 'detailID' is a randomly generated UUID. 
+        </pre>  
+        
+        where the 'detailID' is a randomly generated UUID. 
         
         Naviating to one of these URLs would sometimes return valid order information, other times it would error out by informing me the UUID was no longer valid. 
         Injecting a path traversal sequence of '../' in the 'detailID' parameter returned an interesting response. 
@@ -158,9 +162,10 @@
         At this point I enlisted the help of my hacker friend @ethicxlhuman (a.k.a FuzzGod) as I knew he had also been learning about the bug class lately. It's also just more fun to hack with friends! 
         
         After convincing him that this behavior was indicative of a secondary context path traversal,
+        <br>
+        <img src="ethicalxtommyfirstdiscussion.png">
+        <br>
 
-        <img src="/ethicalxtommyfirstdiscussion.png">
-        
         we decided that we needed to confirm the behavior. 
         If we could navigate back two directories then append the directories to the end of our payload and receive the original response (pre-error message), we would confirm the bug's behavior. 
         Then we ran into our first problem. 
@@ -169,9 +174,9 @@
         
         <pre>
             <code>
-                ../ (Original 404 Message)
-                ../../ (444 Error Message from Custom WAF Solution)
-                ??? -> $$$
+            ../ (Original 404 Message)
+            ../../ (444 Error Message from Custom WAF Solution)
+            ??? -> $$$
             </code>
         </pre>
         
@@ -184,7 +189,7 @@
 
         <pre>
             <code>
-                https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../customers/6b8d4592-876c-4e22-bef2-7257b7d5480e
+            https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../customers/6b8d4592-876c-4e22-bef2-7257b7d5480e
             </code>
         </pre>  
 
@@ -196,7 +201,7 @@
         
         <pre>
             <code>
-                https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../.\../.\../.\../.\../.\../.\../
+            https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../.\../.\../.\../.\../.\../.\../
             </code>
         </pre> 
         
@@ -204,8 +209,9 @@
         Looks like someone doing a funky dance move (Skywalkin'), or a crowd of people doing the wave. 
 
         Once we started fuzzing for and hitting random endpoints on the internal network, our excitement was growing.
-
+        <br>
         <img src="weinside.png">
+        <br>
         
         From there we both ran our fuzzing wordlists at the root to see what we could get access to. 
         After about an hour of hitting random endpoints on the internal server that didn't return anything to interesting, Ethical informed me that he was able to hit an internal '/actuator' endpoint that revealed the paths to other endpoints available. 
@@ -219,13 +225,13 @@
         A '/actuator/env' endpoint that returned all of the target's internal service names, IP addresses, ports they were running on etc. 
         An '/actuator/mappings/' endpoint that returned their entire internal API structure of roughly 200 API endpoints that we didn't get the chance to explore. 
         However, the best part was one of the API endpoints returned a dump of employees / vendor information. 
-
-        <img src="/piileak.png">
-
+        <br>
+        <img src="piileak.png">
+        <br>
         Names, emails, phone numbers, Assigned Roles, of their employees/vendors etc. 
-
-        <img src="/chaching.png">
-
+        <br>
+        <img src="chaching.png">
+        </br>
         At this point we reported it to the company as a Critical as we had undeniable proof in our eyes that we were able to 'walk' around their network to access highly sensitive information. 
         
         Unfortunately, the response from the security team was dissapointing. 
