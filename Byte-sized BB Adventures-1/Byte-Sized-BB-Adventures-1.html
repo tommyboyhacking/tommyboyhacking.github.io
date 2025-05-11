@@ -15,17 +15,21 @@
     <p>
          
         Hackers of Hacker Land,
-        
+    </p>
+    <p>    
         My name is TommyBoyHacking, security researcher, planet hacker, bug bounty hunter, leader of the free world, self proclaimed 'Callback God', etc.
         As for my background, I'm not someone that had years of web development experience or tech knowledge before starting down this path (~3 years later now I've held a networking job, pentesting internship, finishing up cyber degree. ~1.5 years later hunting on Bug Bounty programs when time allows.). 
-        
+    </p>
+    <p>    
         For this first blog post I'd like to share some fun vulnerabilities I've found in my brief bug bounty career hunting on the biggest companies in the world. 
-        
+    </p>
+    <p>    
         Unfortunately, most bug bounty programs these days don't 'allow' disclosure so we have to make do.
         Due to this, no company names will be disclosed, and any requests, screenshots, etc. shown will be a simulated environment. 
         The names of features and other company identifying artifacts have been altered to not violate disclosure rules. For this reason, no specific timelines on the programs response, triage, payment etc will be provided either. 
         The focus of this article/blog is on the technical aspect of the bugs themselves. 
-        
+    </p>
+    <p>    
         I'll be diving into two of my favorite findings from this past year.  
         
         Last important note: Both of these bugs were found on public Bug Bounty Programs.
@@ -38,20 +42,25 @@
         
         Some time last year, I saw a campaign show up on HackerOne from a Cryptocurrency exchange platform. At the time they promised to pay up to 2X for any bugs submitted in a 30 day period. 
         Unluckily for me, I only noticed this with about 7 days left in the campaign.
-        
+    </p>
+    <p>    
         Time to ball, y'all. 
-        
+    </p>
+    <p>    
         I signed up for an account, and started poking around the platform. 
         After reading through the JS files, extracting endpoints, trying to bypass 2FA measures, and resorting to just fuzzing every single parameter that was passed to the API, I had nothing. 
         It was surprisingly locked down, with most features throwing a rude error message that informed me that I needed to be 'KYC verified to Deposit or Withdraw' (or do anything). 
-        
+    </p>
+    <p>    
         By the third day of aimlessly poking around, I was about ready to move on to a new target, as this one felt pretty locked down with a limited set of functionality to test. 
-        
+    </p>
+    <p>    
         Even after going through the JS and attempting to bypass the client side restrictions by crafting requests directly to the API, I was still being met with the same error message. 
         Verify your identify to Deposit or Withdraw to the platform. 
         Verify your identity to deposit or withdraw.
         VeRiFy yOuR IdEnTiTy tO dEpOsIt oR WiThDraW. 
-        
+    </p>
+    <p>    
         After 3 days of seeing this same error message, it felt like the app was taunting me. 
         
         After mulling it over, I realized this must be pretty important to their business operations since they are a cryptocurrency exchange that is licensed in certain countries and must follow AML laws.  
