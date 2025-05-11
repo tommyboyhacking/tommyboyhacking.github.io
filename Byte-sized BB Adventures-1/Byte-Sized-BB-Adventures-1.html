@@ -4,7 +4,6 @@
     <meta property="og:title" content="Byte-Sized Bug Bounty Adventures">
     <meta property="og:description" content="Join me on an adventure through Bug Bounty space and time as we explore a Business logic bug and secondary contex path traversal bug found on Public Bug Bounty Programs">
     <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit="no">
-    <meta description="Join me on an adventure through Bug Bounty space and time as we explore a Business logic bug and secondary contex path traversal bug found on Public Bug Bounty Programs">
     <meta image="1.jpg">
 </head>
 
@@ -33,7 +32,7 @@
     </p>     
        
     <h2> Sometimes, the bug is staring right at you. </h2> 
-    <h3>Business Logic / Access Control Bug</h3>
+    <h3>  Business Logic / Access Control Bug</h3>
     <p>
         I'm including this bug as I often hear from new (or newer than me) hackers that they can't find good resources on Business Logic bugs. The bug itself is simple, this is more so to demonstrate the 'thought process'. 
         
@@ -61,23 +60,27 @@
         "Can I get money on or off the platform without being KYC verified?" 
         
         To help visualize the layout of the app a little better:
-        
-        -Home Page
-            -Cryptocurrency prices
-            -Can 'quick' buy and sell different cryptocurrencies
-        - Profile
-            -Update email
-            -Update password
-            -Update 2FA Settings
-        -Wallet
-            - Assets
-        -Settings
-            -Profile preferences
-            -App Theme settings
-            -Home page preferences
-            -Preferred currency settings
-            -Autosell
-        
+    </p>
+        <pre>
+            <code>
+                -Home Page
+                -Cryptocurrency prices
+                -Can 'quick' buy and sell different cryptocurrencies
+            - Profile
+                -Update email
+                -Update password
+                -Update 2FA Settings
+            -Wallet
+                - Assets
+            -Settings
+                -Profile preferences
+                -App Theme settings
+                -Home page preferences
+                -Preferred currency settings
+                -Autosell
+            </code>
+        </pre>
+    <p>  
         I'm missing a few things, but this was the general layout. After 3 days, it had felt as though I had clicked through every page, audited all the JS and tested anything I could. 
         
         I went back to the settings page one more time to click on every menu option to make sure I hadn't missed anything. 
@@ -85,93 +88,109 @@
         One page that I had not paid much attention to was the 'Autosell' page. Which simply advertised itself as a feature to auto-convert your BTC to USD once it's in your account. 
         Plenty of cryptocurrency exchanges offer a feature that does a similar thing, so I hadn't paid much attention to it before. 
         I must've looked at this page 15 times in my random clicking around over those 3 days. 
-        
+    </p>
+    <p>   
         The way this feature worked was simple, the user can generate a 'Autosell' BTC address by clicking the 'Generate' button on the page. 
         Once the BTC address was generated, the user could send BTC to this address and have it automatically convert to USD in their account.
+    </p> 
+        <pre>
+            <code>
+                'Verify your identify to Deposit or Withdraw to the platform.'
+            </code>
+        </pre>
         
-        'Verify your identify to Deposit or Withdraw to the platform.'
-        
+    <p>        
         On my final pass through the settings when looking at the 'Autosell' page I noticed, the 'Generate' button wasn't greyed out like most other buttons on the site. 
         Harnessing my L33T mouse clicking skills, I decided to click the 'Generate' button. To my surprise, no error message. I simply saw a BTC address in the UI staring back at me. 
-        
+    </p>
+    <p>    
         "Can I send BTC to this address, and if I did would it show up in my account?"
-        
+    </p>    
+    <p>
         From there, I just sent BTC to that wallet address and 20 minutes later it appeared in my account wallet as USD. I was able to confirm everything went through by viewing my 'Transaction History'. 
         Once the USD was in the account, functionality that was previously locked or forbidden was now unlocked for my account.
         The only thing I wasn't able to do at this point was withdraw to an external wallet/bank (This seemed to have an extra check).
-        
+    </p>
+    <p>    
         Had there been more time in the campaign, I would've probably spent a little more time to see if it was possible to also withdraw this cash anywhere or transfer it back to BTC then transfer that BTC out before reporting it. 
         If I would've been able to do that, a malicious actor could've had a fully anonymous money laundering chain using this program's Cryptocurrency exchange possibly putting them in violation of AML laws.
         I reported it to their team as a medium, and it was triaged within 11 days. The team confirmed the 'Autosell' feature was missing a validation check, and resolved it by the end of the month. 
         The team paid a $3,000 bounty for this business logic / missing access control vulnerability (If KYC is important before users can deposit and withdraw, why are they allowed to deposit via 'Autosell' page?).  
-        
+    </p>    
         Context is important, this exchange accepted the vulnerability as they saw the potential for abuse / potential for reputational damage to their business in the future. 
         
         The lesson learned here is sometimes, the bug is staring you right in the face, you just have to put 2 and 2 together. 
-    </p>
+    
         
     <h2>  Skywalkin' past your WAF into your internal network </h2> 
-    <h3>A Secondary Context Path Traversal Bug </h3>
-        
+    <h3>  A Secondary Context Path Traversal Bug </h3>
+    <p>    
         (Details such as specific error messages, path names, parameter, and subdomain names, etc have been scrambled so as to not reveal the actual target. The concepts remain the same. )
         
         A few months ago, I had spent a significant amount of time reading articles and watching talks by the guru Sam Curry discussing his secondary context path traversal bug. 
         
         Finally feeling like I had grasped the concept, I decided it was time to find one in the wild. 
-        
+    </p>
+    <p>    
         The selected target was a large retailer. Poking through some preliminary recon on their subdomains, there was one in particular that returned a 200 in the response. 
         Let's pretend for a moment that the subdomain just dealt with customer orders in some way, shape or form. So our host would look something like this:
-        
+    </p>    
         <pre>
             <code>orderinformation.host.com</code>
         </pre>
-
+    <p>
         Upon opening the root of the domain I was met with a blank page that simply provided an error that read along the lines of 'Sorry, something went wrong'.
-        
+    </p>
+    <p>    
         I didn't bother to investigate the source of this error message, but I did want to figure out how this subdomain was being used. 
         Generally, the first step here would be to review the underlying JS for clues. 
         This time however I opted for a different approach, electing to instead search for the specific subdomain through the WayBack Machine. 
         This provided exactly what we needed. Hundreds of results which showed the directories and parameters that are typically used on the site.
         There was mainly one directory path, and one relevant parameter. 
-        
+    </p>
+    <p>    
         Generally they all followed the same pattern:
-        
+    </p>    
         <pre>
             <code>
                 https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e
             </code>
         </pre>  
-        
+    <p>    
         where the 'detailID' is a randomly generated UUID. 
-        
+    </p>
+    <p>    
         Naviating to one of these URLs would sometimes return valid order information, other times it would error out by informing me the UUID was no longer valid. 
         Injecting a path traversal sequence of '../' in the 'detailID' parameter returned an interesting response. 
         Instead of a '200' we received a '404 Not Found'. 
-        
+    </p>
+    <p>    
         Nothing too unusual about that, however the server returned an interesting piece of information in the response body that was unusual. 
-        
+    </p>    
         <pre>
             <code>
                 'Error getting order info from http://organizer.orderinformation.host.net/api/baas/orders/orderDetails/merge/customer-data/customers/6b8d4592-876c-4e22-bef2-7257b7d5480e../'
             </code>
         </pre>
-        
+    <p>    
         Did you catch it?
         Who is 'organizer.orderinformation.host.net'? We're sending this request on 'orderinformation.host.com'.
         Then I realized, the path traversal sequence I was sending in the 'detailID' parameter was being appended to a request that's being made to a domain that is only accessible internally. I confirmed this by attempting to reach the domain from my machine, which didn't resolve. 
         At this point I enlisted the help of my hacker friend @ethicxlhuman (a.k.a FuzzGod) as I knew he had also been learning about the bug class lately. It's also just more fun to hack with friends! 
-        
+    </p>
+    <p>    
         After convincing him that this behavior was indicative of a secondary context path traversal,
+    </p>
         <br>
         <img src="ethicalxtommyfirstdiscussion.png">
         <br>
-
+    <p>
         we decided that we needed to confirm the behavior. 
         If we could navigate back two directories then append the directories to the end of our payload and receive the original response (pre-error message), we would confirm the bug's behavior. 
         Then we ran into our first problem. 
         
         What appeared to be a custom WAF was blocking any requests with two traversal sequences in the payload. 
-        
+    </p>    
         <pre>
             <code>
             ../ (Original 404 Message)
@@ -179,74 +198,84 @@
             ??? -> $$$
             </code>
         </pre>
-        
+    <p>    
         After spending some time messing around I noticed using a '/../.\' sequence didn't block my request, it simply returned the original 404 message.
         Can we add the second traversal sequence after this initial payload to get around the firewall?
-        
+    </p>
+    <p>    
         Yup!
-        
+    </p>
+    <p>    
         '/../.\../' allowed us to traverse up two directories on the internal host. We were then able to use this sequence to confirm the behavior of the vulnerability with the following payload:
-
+    </p>
         <pre>
             <code>
             https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../customers/6b8d4592-876c-4e22-bef2-7257b7d5480e
             </code>
-        </pre>  
-
+        </pre>
+    <p>
         Which returned the same response as the original response before injecting any payloads.
         Ethical quickly extrapolated this out to get us to the root of the internal host. 
         Remember from the original error message, our insertion point is 8 directories deep. 
-        
+    </p>
+    <p>    
         The final payload to hit the root of the internal host looked like this: 
-        
+    </p>    
         <pre>
             <code>
             https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d4592-876c-4e22-bef2-7257b7d5480e/../.\../.\../.\../.\../.\../.\../.\../
             </code>
         </pre> 
-        
+    <p>    
         
         Looks like someone doing a funky dance move (Skywalkin'), or a crowd of people doing the wave. 
 
-        Once we started fuzzing for and hitting random endpoints on the internal network, our excitement was growing.
+        Once we started fuzzing for and hitting random endpoints on the internal network, we took a moment to reflect.
+    </p>
         <br>
         <img src="weinside.png">
         <br>
-        
+    <p>    
         From there we both ran our fuzzing wordlists at the root to see what we could get access to. 
         After about an hour of hitting random endpoints on the internal server that didn't return anything to interesting, Ethical informed me that he was able to hit an internal '/actuator' endpoint that revealed the paths to other endpoints available. 
         To try to keep this blog post a bit shorter, these other endpoints didn't hold anything too interesting. From there, we found other random endpoints, with most being dead ends or throwing 520 gateway errors that made them inaccessible.
-        
+    </p>
+    <p>    
         At this point it was roughly 4am my time, so I ended up falling asleep at my desk.
         A few hours later I woke up to the news every hacker wants to hear. 
-        
+    </p>
+    <p>    
         Ethical informed me that he found a development subdomain of the subdomain that we were originally working on, where a lot of the endpoints that threw gateway errors before were dumping loads of information. 
         
         A '/actuator/env' endpoint that returned all of the target's internal service names, IP addresses, ports they were running on etc. 
         An '/actuator/mappings/' endpoint that returned their entire internal API structure of roughly 200 API endpoints that we didn't get the chance to explore. 
         However, the best part was one of the API endpoints returned a dump of employees / vendor information. 
+    </p>
         <br>
         <img src="piileak.png">
         <br>
-        Names, emails, phone numbers, Assigned Roles, of their employees/vendors etc. 
+    <p>
+        Names, emails, phone numbers, Assigned Roles, of their employees/vendors etc.
+    </p> 
         <br>
         <img src="chaching.png">
         </br>
+    <p>
         At this point we reported it to the company as a Critical as we had undeniable proof in our eyes that we were able to 'walk' around their network to access highly sensitive information. 
         
         Unfortunately, the response from the security team was dissapointing. 
         They claimed the data returned was all 'Test' information and nothing we could access was sensitive, downgraded it to a 'High' severity and paid a dissapointing 3 figure bounty for the bug. 
-        
+    </p>
+    <p>    
         Ultimately, it was a fun bug to find and exploit with my good friend @ethicxlhuman.
         
         Although the outcome was dissapointing, the bug was still really cool to us and it was a lot of fun to pop.
 
         The lesson learned here is sometimes, the real bounties are the friends we made along the way. 
-        
+    </p>
+    <p>   
         Thank you for reading if you made it to this point, I hope my writing was adequate and interesting enough to hold your attention this long. 
-        
-        Shouts outs to the Nahamsec discord, where I've met most of my hacker friends
-        Shouts outs to @ethicxlhuman the FuzzGod for helping me exploit the bug.
-    </p>     
+    </p>
+   
     
 </body>
