@@ -17,6 +17,9 @@
 <img src="2.jpg" alt="Byte-Sized Bug Bounty Adventures">
 
 <body>
+    <p>Skip To: </p>
+    <a href="#stare">Sometimes, the bug is staring right at you.</a>
+    <a href="#skywalkin'">Skywalkin' past your WAF into your internal network</a>
     <p>
          
         Hackers of Hacker Land,
@@ -40,7 +43,7 @@
         Last important note: Both of these bugs were found on public Bug Bounty Programs.
     </p>     
        
-    <h2> Sometimes, the bug is staring right at you. </h2> 
+    <h2 id="stare"> Sometimes, the bug is staring right at you. </h2> 
     <h3>  Business Logic / Access Control Bug</h3>
     <p>
         I'm including this bug as I often hear from new (or newer than me) hackers that they can't find good resources on Business Logic bugs. The bug itself is simple, this is more so to demonstrate the 'thought process'. 
@@ -50,11 +53,15 @@
     </p>
     <p>    
         Time to ball, y'all. 
-        <img src="https://media3.giphy.com/media/3oriNUHm08iuTga3zG/giphy.gif?cid=6c09b952thafyw8luukrkhyreznaxm1urvw6u06lhftk3sgk&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="Welcome to the Space Jam">
     </p>
+    
+        <img src="https://media3.giphy.com/media/3oriNUHm08iuTga3zG/giphy.gif?cid=6c09b952thafyw8luukrkhyreznaxm1urvw6u06lhftk3sgk&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="Welcome to the Space Jam">
+    
     <p>    
         I signed up for an account, and started poking around the platform. 
         After reading through the JS files, extracting endpoints, trying to bypass 2FA measures, and resorting to just fuzzing every single parameter that was passed to the API, I had nothing. 
+    </p>
+    <p>
         It was surprisingly locked down, with most features throwing a rude error message that informed me that I needed to be 'KYC verified to Deposit or Withdraw' (or do anything). 
     </p>
     <p>    
@@ -78,10 +85,12 @@
         After 3 days of seeing this same error message, it felt like the app was taunting me. 
         
         After mulling it over, I realized this must be pretty important to their business operations since they are a cryptocurrency exchange that is licensed in certain countries and must follow AML laws.  
-        
+    </p>
+    <p>
         This begged the question:
-        "Can I get money on or off the platform without being KYC verified?" 
-        
+        <strong>"Can I get money on or off the platform without being KYC verified?"</strong>
+    </p>
+    <p>
         To help visualize the layout of the app a little better:
     </p>
         <pre>
@@ -107,7 +116,8 @@
         I'm missing a few things, but this was the general layout. After 3 days, it had felt as though I had clicked through every page, audited all the JS and tested anything I could. 
         
         I went back to the settings page one more time to click on every menu option to make sure I hadn't missed anything. 
-        
+    </p>
+    <p>
         One page that I had not paid much attention to was the 'Autosell' page. Which simply advertised itself as a feature to auto-convert your BTC to USD once it's in your account. 
         Plenty of cryptocurrency exchanges offer a feature that does a similar thing, so I hadn't paid much attention to it before. 
         I must've looked at this page 15 times in my random clicking around over those 3 days. 
@@ -137,6 +147,8 @@
     <p>    
         Had there been more time in the campaign, I would've probably spent a little more time to see if it was possible to also withdraw this cash anywhere or transfer it back to BTC then transfer that BTC out before reporting it. 
         If I would've been able to do that, a malicious actor could've had a fully anonymous money laundering chain using this program's Cryptocurrency exchange possibly putting them in violation of AML laws.
+    </p>
+    <p>
         I reported it to their team as a medium, and it was triaged within 11 days. The team confirmed the 'Autosell' feature was missing a validation check, and resolved it by the end of the month. 
         The team paid a $3,000 bounty for this business logic / missing access control vulnerability (If KYC is important before users can deposit and withdraw, why are they allowed to deposit via 'Autosell' page?).  
     </p>    
@@ -145,7 +157,7 @@
         The lesson learned here is sometimes, the bug is staring you right in the face, you just have to put 2 and 2 together. 
     
         
-    <h2>  Skywalkin' past your WAF into your internal network </h2> 
+    <h2 id="skywalkin'">  Skywalkin' past your WAF into your internal network </h2> 
     <h3>  A Secondary Context Path Traversal Bug </h3>
     <p>    
         (Details such as specific error messages, path names, parameter, and subdomain names, etc have been scrambled so as to not reveal the actual target. The concepts remain the same. )
@@ -305,3 +317,4 @@ https://orderinformation.host.com/api/OrderDetails?getInfo=true&detailID=6b8d459
    
     
 </body>
+
