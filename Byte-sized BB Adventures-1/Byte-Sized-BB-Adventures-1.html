@@ -140,7 +140,8 @@
     <h3>  A Secondary Context Path Traversal Bug </h3>
     <p>    
         (Details such as specific error messages, path names, parameter, and subdomain names, etc have been scrambled so as to not reveal the actual target. The concepts remain the same. )
-        
+    </p>
+    <p>
         A few months ago, I had spent a significant amount of time reading articles and watching talks by the guru Sam Curry discussing his secondary context path traversal bug. 
         
         Finally feeling like I had grasped the concept, I decided it was time to find one in the wild. 
@@ -150,7 +151,9 @@
         Let's pretend for a moment that the subdomain just dealt with customer orders in some way, shape or form. So our host would look something like this:
     </p>    
         <pre>
-            <code>orderinformation.host.com</code>
+        <code>
+orderinformation.host.com
+        </code>
         </pre>
     <p>
         Upon opening the root of the domain I was met with a blank page that simply provided an error that read along the lines of 'Sorry, something went wrong'.
