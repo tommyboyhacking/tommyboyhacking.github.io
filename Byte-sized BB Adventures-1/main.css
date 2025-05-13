@@ -1,5 +1,37 @@
 /* main.css */
 
+} 
+/* Code blocks */
+pre {
+  background-color: #1e1e1e; 
+  color: #f1f1f1; 
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 1.5em 0;
+}
+
+/* Ensure <code> inside <pre> doesn't override styling */
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.95em;
+}
+
+/* Inline code styling */
+code {
+  background-color: #2a2a2a;
+  color: #ffcc99;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em;
+}
+
 /* Set dark */
 body {
   background-color: #121212;
@@ -67,4 +99,4 @@ th {
 }
 td {
   background-color: #1a1a1a;
-}
+
