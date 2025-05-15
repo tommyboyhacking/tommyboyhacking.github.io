@@ -18,7 +18,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     padding: 2rem;
-    max-width: 800px;
+    max-width: 100%;
+    width: 90%;
     margin: auto;
 }
 
