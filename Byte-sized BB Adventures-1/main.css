@@ -1,102 +1,113 @@
 /* main.css */
 
-} 
-/* Code blocks */
-pre {
-  background-color: #1e1e1e; 
-  color: #f1f1f1; 
-  padding: 16px;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-family: 'Courier New', Courier, monospace;
-  line-height: 1.5;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin: 1.5em 0;
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Ensure <code> inside <pre> doesn't override styling */
-pre code {
-  background: none;
-  color: inherit;
-  padding: 0;
-  font-size: 0.95em;
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
 
-/* Inline code styling */
-code {
-  background-color: #2a2a2a;
-  color: #ffcc99;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.95em;
-}
-
-/* Set dark */
 body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
 }
 
-/* Style headers */
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff;
+h1, h2, h3 {
+    color: #ffb300;
+    margin-bottom: 1rem;
 }
 
-/* Style links */
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid #ffb300;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
 a {
-  color: #bb86fc;
-  text-decoration: none;
+    color: #03a9f4;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
 }
+
 a:hover {
-  text-decoration: underline;
+    color: #0288d1;
+    text-decoration: underline;
 }
 
-/* Style buttons */
-button {
-  background-color: #1f1f1f;
-  color: #ffffff;
-  border: 1px solid #444;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #333;
+strong {
+    color: #ffffff;
 }
 
-/* Style form inputs */
-input, textarea, select {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-  border: 1px solid #555;
-  padding: 8px;
-}
-input::placeholder, textarea::placeholder {
-  color: #888;
+em, i {
+    color: #cccccc;
 }
 
-/* Style containers */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem 0;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* Style tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    overflow-x: auto;
+    border-left: 4px solid #ffb300;
+    margin-bottom: 1rem;
+    border-radius: 4px;
 }
-th, td {
-  border: 1px solid #444;
-  padding: 10px;
-}
-th {
-  background-color: #222;
-}
-td {
-  background-color: #1a1a1a;
 
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.95rem;
+}
+
+/* Navigation links at the top */
+a[href^="#"] {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive typography */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    body {
+        padding: 1rem;
+    }
+}
