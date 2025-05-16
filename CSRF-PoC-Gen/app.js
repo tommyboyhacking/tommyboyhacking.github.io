@@ -2,9 +2,8 @@ var selectedHTTPMethod = document.getElementById("select-method");
 var postBody = document.getElementById("post-data");
 var submitInit = document.getElementById("submit-input");
 var targetUrl = document.getElementById("target-url");
+var copyPocButton = document.getElementById("copy-poc");
 
-
-console.log(selectedHTTPMethod);
 
 function toShowOrNotToShow() {
     var selectedValue = selectedHTTPMethod.value;
@@ -63,6 +62,14 @@ function handleSubmit() {
 submitInit.addEventListener('click', handleSubmit);
 
 function copyToClipboard() {
-    var pocOutputToCopy = document.getElementById("poc-output").textcontent;
+    var pocOutputToCopy = document.getElementById("poc-output").value;
     navigator.clipboard.writeText(pocOutputToCopy)
+     .then(()=> {
+        alert("PoC Copied!");
+     })
+     .catch(err => {
+        console.error("Failed to copy: ", err);
+     });
 }
+
+copyPocButton.addEventListener('click', copyToClipboard);
