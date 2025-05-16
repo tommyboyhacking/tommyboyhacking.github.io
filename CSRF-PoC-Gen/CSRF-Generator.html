@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta author="tommyboyhacking">
+</head>
+<title>CSRF PoC Generator</title>
+<body>
+    <h1>CSRF PoC Generator</h1>
+    <h3>Commissioned by Kharaone</h3>
+    <p>Use this CSRF PoC Generator to generate a PoC of a vulnerable HTTP request</p>
+    <h4>Select the HTTP method of your request</h4>
+    <select id="select-method">
+        <option>GET</option>
+        <option>POST</option>
+    </select>
+    <br>
+    <br>
+    <input id="target-url" placeholder="Paste your full URL here.">
+    <br>
+    <p>Paste the body of your POST request here. This tool only accepts a URL encoded POST body at this time.</p>
+    <br>
+    <textarea id="post-data" disabled="true" placeholder="Paste the body of your POST request here."></textarea>
+    <br>
+    <button id="submit-input">Submit</button>
+    <br>
+    <br>
+    <p>Your CSRF Poc:</p>
+    <textarea id="poc-output"></textarea>
+    <br>
+    <button id="copy-poc">Copy To Clipboard</button>
+    <script src="app.js"></script>
+</body>
+</html>
