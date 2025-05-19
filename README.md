@@ -8,3 +8,4 @@
 # Toolkit
 
 [CSRF Poc Generator](https://tommyboyhacking.github.io/CSRF-PoC-Gen/CSRF-Generator.html)
+[SSRF Test Payload Generator](https://tommyboyhacking.github.io/SSRF-Test-Gen/ssrf-test-gen.html)
