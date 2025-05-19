@@ -56,4 +56,4 @@ function copyToClipboard() {
      });
 }
 
-copyPocButton.addEventListener('click', copyToClipboard);
+copyPayloadButton.addEventListener('click', copyToClipboard);
