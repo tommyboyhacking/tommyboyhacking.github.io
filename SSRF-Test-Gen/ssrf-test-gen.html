@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta author="tommyboyhacking">
+</head>
+<title>
+    SSRF Testing Payload Generator
+</title>
+<h1>SSRF Testing Payload Generator</h1>
+<br>
+<select id="select-payload">
+    <option>Load iframes</option>
+    <option>Load Images</option>
+    <option>Test JS Execution</option>
+    <option>Browser Fingerprint (Not Implemented yet)</option>
+</select>
+<input id="callback-host" placeholder="Paste your callback host here">
+<br>
+<button id="submit">Generate</button>
+<br>
+<textarea id="payload-output" placeholder="Your HTML will be generated here" style="width: 250px; height: 250px;"></textarea>
+<script src="main.js"></script>
+</body>
+</html>
