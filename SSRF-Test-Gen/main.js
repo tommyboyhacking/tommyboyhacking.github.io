@@ -32,7 +32,7 @@ function handleSubmit () {
 <h1> JS Execution Test </h1>
 <body>
 <script>
-window.location.replace("${userHost}/scripted);
+window.location.replace("${userHost}/scripted");
 </script>
 </body>
 </html>`;
