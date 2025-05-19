@@ -7,3 +7,11 @@ Load iframe will check if the callback loads iframes (Possibly useful for DNS re
 Test JS Execution will check if the callback executes JS (JavaScript).
 
 Browser Fingerprint will try to finger print the browser, this is useful when dealing with a spoofed bot / UA that is still executing JS. 
+
+Go back to your callback
+"Modify HTTP Request"
+
+Paste the generated payload, then add the content type header. For example:
+Content-Type: text/html
+
+in the 'Headers' section. 
