@@ -23,7 +23,7 @@ function handleSubmit () {
 <html>
 <h1>Image Render Test</h1>
 <body>
-<img src=${userHost}>
+<img src="${userHost}">
 </body>
 </html>`;
     } else if (payloadType == 'Test JS Execution') {
