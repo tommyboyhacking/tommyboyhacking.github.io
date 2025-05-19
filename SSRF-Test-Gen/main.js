@@ -46,7 +46,7 @@ N/A
 submitButton.addEventListener('click', handleSubmit);
 
 function copyToClipboard() {
-    var pocOutputToCopy = document.getElementById("poc-output").value;
+    var pocOutputToCopy = document.getElementById("payload-output").value;
     navigator.clipboard.writeText(pocOutputToCopy)
      .then(()=> {
         alert("PoC Copied!");
