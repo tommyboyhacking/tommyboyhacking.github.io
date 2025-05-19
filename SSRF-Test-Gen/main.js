@@ -44,3 +44,16 @@ N/A
 }
 
 submitButton.addEventListener('click', handleSubmit);
+
+function copyToClipboard() {
+    var pocOutputToCopy = document.getElementById("poc-output").value;
+    navigator.clipboard.writeText(pocOutputToCopy)
+     .then(()=> {
+        alert("PoC Copied!");
+     })
+     .catch(err => {
+        console.error("Failed to copy: ", err);
+     });
+}
+
+copyPocButton.addEventListener('click', copyToClipboard);
