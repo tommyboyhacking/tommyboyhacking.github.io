@@ -1,0 +1,9 @@
+Paste your callback url (You can generate a free one here: https://ssrf.cvssadvisor.com)
+
+Load images will check if the callback loads images.
+
+Load iframe will check if the callback loads iframes (Possibly useful for DNS rebinding).
+
+Test JS Execution will check if the callback executes JS (JavaScript).
+
+Browser Fingerprint will try to finger print the browser, this is useful when dealing with a spoofed bot / UA that is still executing JS. 
