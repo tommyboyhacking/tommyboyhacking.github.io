@@ -2,6 +2,7 @@ var callbackHost = document.getElementById("callback-host");
 var submitButton = document.getElementById("submit");
 var payloadOutput = document.getElementById("payload-output");
 var selectedPayload = document.getElementById("select-payload");
+var copyPayloadButton = document.getElementById("copy-payload");
 
 function handleSubmit () {
     var userHost = callbackHost.value;
