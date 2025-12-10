@@ -3,11 +3,6 @@ layout: default
 title: Tools
 ---
 
-<header>
-	<a href="/">tommyboyhacking</a>
-	<a href="/Writeups">Writeups</a>
-	<a href="/Tools">Tools</a>
-</header>
 
 # Tools
 

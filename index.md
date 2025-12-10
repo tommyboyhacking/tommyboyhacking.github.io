@@ -3,12 +3,6 @@ layout: default
 title: Home
 ---
 
-<header>
-    <a href="/">tommyboyhacking</a>
-    <a href="/Writeups">Writeups</a>
-    <a href="/Tools">Tools</a>
-</header>
-
 # About
 
 
