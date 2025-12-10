@@ -1,3 +1,8 @@
+---
+layout: default
+title: Writeups
+---
+
 <header>
 	<a href="/">tommyboyhacking</a>
 	<a href="/Writeups">Writeups</a>
