@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | tommyboyhacking</title>
+    
+    <link rel="stylesheet" href="/assets/style.css">
+    
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+</head>
+<body data-theme="light">
+
+    <header style="background-color: var(--header-bg); padding: 1rem; text-align: center; border-bottom: 1px solid #e0e0e0;">
+        <nav>
+            <a href="/" style="margin: 0 15px; font-weight: bold; color: var(--link-color);">Home</a>
+            <a href="/Writeups/" style="margin: 0 15px; font-weight: bold; color: var(--link-color);">Writeups</a>
+            <a href="/Tools/" style="margin: 0 15px; font-weight: bold; color: var(--link-color);">ToolKit</a>
+        </nav>
+    </header>
+
+    <button id="theme-toggle" style="position: fixed; top: 15px; right: 15px; z-index: 1000; background: var(--bg-color); border: 1px solid var(--text-color); border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+        <span id="sun-icon" style="font-size: 20px;">☀️</span>
+        <span id="moon-icon" style="display: none; font-size: 20px;">🌙</span>
+    </button>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        const sun = document.getElementById('sun-icon');
+        const moon = document.getElementById('moon-icon');
+        
+        // 1. Check for saved theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', currentTheme);
+        updateIcon(currentTheme);
+
+        // 2. Toggle on click
+        btn.addEventListener('click', function() {
+            let theme = document.body.getAttribute('data-theme');
+            let newTheme = theme === 'light' ? 'dark' : 'light';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                sun.style.display = 'none';
+                moon.style.display = 'inline';
+            } else {
+                sun.style.display = 'inline';
+                moon.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

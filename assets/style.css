@@ -1,0 +1,27 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #15202b;
+    --link-color: #1e6bb8;
+    --header-bg: #f4f4f4;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --link-color: #58a6ff;
+    --header-bg: #161b22;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+    color: var(--link-color) !important;
+}
+
+header {
+    background-color: var(--header-bg) !important;
+}
