@@ -19,7 +19,7 @@ Below you can also find a couple simple tools I wrote if needed.
 # Writeups
 
 
-[Byte-Sized Bug Bounty Adventures 1](/Writeups/Byte-sized BB Adventures-1/Byte-Sized-BB-Adventures-1.html)
+1. [Byte-Sized Bug Bounty Adventures 1](/Writeups/Byte-sized BB Adventures-1/Byte-Sized-BB-Adventures-1.html)
 
 
 
