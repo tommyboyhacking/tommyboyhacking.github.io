@@ -3,11 +3,6 @@ layout: default
 title: Writeups
 ---
 
-<header>
-	<a href="/">tommyboyhacking</a>
-	<a href="/Writeups">Writeups</a>
-	<a href="/Tools">Tools</a>
-</header>
 
 # Writeups
 
