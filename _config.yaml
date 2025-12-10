@@ -1,0 +1,6 @@
+title: tommyboyhacking
+theme: jekyll-theme-cayman 
+
+# This ensures your custom link-tree site is NOT touched by the layout/dark mode
+exclude:
+  - tommylinkin/
