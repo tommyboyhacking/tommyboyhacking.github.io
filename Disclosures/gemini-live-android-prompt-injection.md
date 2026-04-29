@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Gemini Live Android - Indirect Prompt Injection via Audio/Video
+title: Gemini Live Assistant on Android is susceptible to indirect prompt injection leading to rogue actions via any played audio or video
 ---
 
 **#0003**<br>
@@ -10,7 +10,7 @@ title: Gemini Live Android - Indirect Prompt Injection via Audio/Video
 **Reported:** 2025-11-30<br>
 **Disclosed:** 2026-04-30 (151 days)
 
-# Gemini Live Assistant on Android - Indirect Prompt Injection Leading to Rogue Actions via Any Played Audio or Video
+# Gemini Live Assistant on Android is susceptible to indirect prompt injection leading to rogue actions via any played audio or video
 
 ## Details
 
