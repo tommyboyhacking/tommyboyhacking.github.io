@@ -25,7 +25,7 @@ Below you can also find a couple simple tools I wrote if needed.
 # Disclosures
 
 
-1. [Gemini Live on Android - Indirect Prompt Injection via Played Audio/Video](/Disclosures/gemini-live-android-prompt-injection.html)
+1. [Indirect Prompt Injection in Gemini Live](/Disclosures/gemini-live-android-prompt-injection.html)
 
 
 

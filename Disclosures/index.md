@@ -11,4 +11,4 @@ Public disclosures of bug reports I've submitted. Report contents and program re
 ----------
 
 
-1. [Gemini Live on Android - Indirect Prompt Injection via Played Audio/Video](/Disclosures/gemini-live-android-prompt-injection.html)
+1. [Indirect Prompt Injection in Gemini Live](/Disclosures/gemini-live-android-prompt-injection.html)
