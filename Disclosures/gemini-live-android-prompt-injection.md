@@ -3,7 +3,7 @@ layout: default
 title: Gemini Live Assistant on Android is susceptible to indirect prompt injection leading to rogue actions via any played audio or video
 ---
 
-**#0003**<br>
+**#0001**<br>
 **Vendor:** Google<br>
 **Program:** AI VRP<br>
 **Status:** Closed / Won't Fix<br>
